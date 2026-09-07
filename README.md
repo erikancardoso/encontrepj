@@ -21,3 +21,14 @@ composer run dev
 ```
 
 O aplicativo móvel será construído posteriormente com React Native e Expo, consumindo a mesma API Laravel.
+
+## Contas locais de demonstração
+
+Execute `php artisan db:seed`. Todas as contas usam a senha `EncontrePJ@123`.
+
+| Perfil              | E-mail                       |
+| ------------------- | ---------------------------- |
+| Prestador           | `prestador@encontrepj.test`  |
+| Empresa contratante | `fornecedor@encontrepj.test` |
+| Recrutador          | `recrutador@encontrepj.test` |
+| Administrador       | `admin@encontrepj.test`      |

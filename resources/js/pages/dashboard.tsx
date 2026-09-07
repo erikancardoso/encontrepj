@@ -21,49 +21,96 @@ const accountLabels: Record<AccountType, string> = {
 export default function Dashboard() {
     const { auth } = usePage().props;
     const accountType = auth.user.primary_account_type ?? 'professional';
-    const isCompany = accountType === 'company';
-
-    const steps = isCompany
-        ? [
-              {
-                  title: 'Complete os dados da empresa',
-                  description:
-                      'Informe o CNPJ e os dados cadastrais para iniciar a verificação.',
-                  icon: Building2,
-              },
-              {
-                  title: 'Comprove sua representação',
-                  description:
-                      'Envie o documento que demonstra seus poderes na organização.',
-                  icon: UserRoundCheck,
-              },
-              {
-                  title: 'Prepare seu primeiro serviço',
-                  description:
-                      'Defina escopo, período, habilidades e disponibilidade necessária.',
-                  icon: FileCheck2,
-              },
-          ]
-        : [
-              {
-                  title: 'Complete seu perfil profissional',
-                  description:
-                      'Inclua sua especialidade, experiência e apresentação.',
-                  icon: UserRoundCheck,
-              },
-              {
-                  title: 'Adicione suas comprovações',
-                  description:
-                      'Organize portfólio, formação e certificados relevantes.',
-                  icon: BadgeCheck,
-              },
-              {
-                  title: 'Defina sua disponibilidade',
-                  description:
-                      'Informe os períodos em que deseja receber oportunidades.',
-                  icon: FileCheck2,
-              },
-          ];
+    const stepsByAccount: Record<
+        AccountType,
+        Array<{
+            title: string;
+            description: string;
+            icon: typeof Building2;
+        }>
+    > = {
+        company: [
+            {
+                title: 'Complete os dados da empresa',
+                description:
+                    'Informe o CNPJ e os dados cadastrais para iniciar a verificação.',
+                icon: Building2,
+            },
+            {
+                title: 'Comprove sua representação',
+                description:
+                    'Envie o documento que demonstra seus poderes na organização.',
+                icon: UserRoundCheck,
+            },
+            {
+                title: 'Prepare seu primeiro serviço',
+                description:
+                    'Defina escopo, período, habilidades e disponibilidade necessária.',
+                icon: FileCheck2,
+            },
+        ],
+        professional: [
+            {
+                title: 'Complete seu perfil profissional',
+                description:
+                    'Inclua sua especialidade, experiência e apresentação.',
+                icon: UserRoundCheck,
+            },
+            {
+                title: 'Adicione suas comprovações',
+                description:
+                    'Organize portfólio, formação e certificados relevantes.',
+                icon: BadgeCheck,
+            },
+            {
+                title: 'Defina sua disponibilidade',
+                description:
+                    'Informe os períodos em que deseja receber oportunidades.',
+                icon: FileCheck2,
+            },
+        ],
+        recruiter: [
+            {
+                title: 'Apresente sua experiência em seleção',
+                description:
+                    'Informe as áreas e os perfis profissionais que você domina.',
+                icon: UserRoundCheck,
+            },
+            {
+                title: 'Comprove suas qualificações',
+                description:
+                    'Adicione certificados e experiências relevantes em recrutamento.',
+                icon: BadgeCheck,
+            },
+            {
+                title: 'Defina sua disponibilidade',
+                description:
+                    'Indique quando poderá conduzir triagens e entrevistas.',
+                icon: FileCheck2,
+            },
+        ],
+        administrator: [
+            {
+                title: 'Acompanhe as verificações',
+                description:
+                    'Revise as contas de profissionais, recrutadores e empresas.',
+                icon: BadgeCheck,
+            },
+            {
+                title: 'Monitore a operação',
+                description:
+                    'Acompanhe projetos, contratos e ocorrências da plataforma.',
+                icon: Building2,
+            },
+            {
+                title: 'Gerencie regras da plataforma',
+                description:
+                    'Mantenha cláusulas obrigatórias e políticas operacionais.',
+                icon: FileCheck2,
+            },
+        ],
+    };
+    const steps = stepsByAccount[accountType];
 
     return (
         <>
