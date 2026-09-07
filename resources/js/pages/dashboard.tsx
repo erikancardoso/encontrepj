@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { CompanyDashboard } from '@/components/company-dashboard';
 import { dashboard } from '@/routes';
 import type { AccountType } from '@/types';
 
@@ -21,6 +22,15 @@ const accountLabels: Record<AccountType, string> = {
 export default function Dashboard() {
     const { auth } = usePage().props;
     const accountType = auth.user.primary_account_type ?? 'professional';
+
+    if (accountType === 'company') {
+        return (
+            <>
+                <Head title="Visão geral" />
+                <CompanyDashboard />
+            </>
+        );
+    }
     const stepsByAccount: Record<
         AccountType,
         Array<{

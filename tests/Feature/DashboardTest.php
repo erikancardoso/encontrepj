@@ -2,7 +2,9 @@
 
 namespace Tests\Feature;
 
+use App\Enums\AccountType;
 use App\Models\User;
+use App\Models\UserAccountType;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -23,5 +25,33 @@ class DashboardTest extends TestCase
 
         $response = $this->get(route('dashboard'));
         $response->assertOk();
+    }
+
+    public function test_company_users_can_visit_the_company_settings_page()
+    {
+        $user = User::factory()->create();
+        UserAccountType::query()->create([
+            'user_id' => $user->id,
+            'type' => AccountType::Company,
+            'is_primary' => true,
+        ]);
+
+        $this->actingAs($user)
+            ->get(route('company.settings'))
+            ->assertOk();
+    }
+
+    public function test_professionals_cannot_visit_the_company_settings_page()
+    {
+        $user = User::factory()->create();
+        UserAccountType::query()->create([
+            'user_id' => $user->id,
+            'type' => AccountType::Professional,
+            'is_primary' => true,
+        ]);
+
+        $this->actingAs($user)
+            ->get(route('company.settings'))
+            ->assertForbidden();
     }
 }
