@@ -82,4 +82,32 @@ class DashboardTest extends TestCase
             ->get(route('company.contracts'))
             ->assertForbidden();
     }
+
+    public function test_company_users_can_visit_the_recruitment_page()
+    {
+        $user = User::factory()->create();
+        UserAccountType::query()->create([
+            'user_id' => $user->id,
+            'type' => AccountType::Company,
+            'is_primary' => true,
+        ]);
+
+        $this->actingAs($user)
+            ->get(route('company.recruitment'))
+            ->assertOk();
+    }
+
+    public function test_professionals_cannot_visit_the_recruitment_page()
+    {
+        $user = User::factory()->create();
+        UserAccountType::query()->create([
+            'user_id' => $user->id,
+            'type' => AccountType::Professional,
+            'is_primary' => true,
+        ]);
+
+        $this->actingAs($user)
+            ->get(route('company.recruitment'))
+            ->assertForbidden();
+    }
 }

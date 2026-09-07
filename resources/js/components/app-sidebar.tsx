@@ -41,7 +41,7 @@ const companyNavItems: NavItem[] = [
     { title: 'Projetos', href: '#projetos', icon: FolderKanban },
     { title: 'Publicar serviço', href: '#publicar-servico', icon: CirclePlus },
     { title: 'Candidaturas', href: '#candidaturas', icon: Users },
-    { title: 'Recrutamento', href: '#recrutamento', icon: SearchCheck },
+    { title: 'Recrutamento', href: '/recrutamento', icon: SearchCheck },
     { title: 'Contratos', href: '/contratos', icon: FileSignature },
     { title: 'Pagamentos', href: '#pagamentos', icon: WalletCards },
     { title: 'Mensagens', href: '#mensagens', icon: MessageSquare },
