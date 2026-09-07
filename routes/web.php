@@ -16,6 +16,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
         return Inertia::render('company/settings');
     })->name('company.settings');
+
+    Route::get('contratos', function (Request $request) {
+        abort_unless(
+            $request->user()->accountTypes()->where('type', 'company')->exists(),
+            403,
+        );
+
+        return Inertia::render('company/contracts');
+    })->name('company.contracts');
 });
 
 require __DIR__.'/settings.php';

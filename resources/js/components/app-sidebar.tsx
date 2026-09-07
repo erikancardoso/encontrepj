@@ -42,7 +42,7 @@ const companyNavItems: NavItem[] = [
     { title: 'Publicar serviço', href: '#publicar-servico', icon: CirclePlus },
     { title: 'Candidaturas', href: '#candidaturas', icon: Users },
     { title: 'Recrutamento', href: '#recrutamento', icon: SearchCheck },
-    { title: 'Contratos', href: '#projetos', icon: FileSignature },
+    { title: 'Contratos', href: '/contratos', icon: FileSignature },
     { title: 'Pagamentos', href: '#pagamentos', icon: WalletCards },
     { title: 'Mensagens', href: '#mensagens', icon: MessageSquare },
     { title: 'Empresa', href: '/empresa', icon: Building2 },
